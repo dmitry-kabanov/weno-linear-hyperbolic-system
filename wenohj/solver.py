@@ -2,7 +2,8 @@ import numpy as np
 
 
 class Solver(object):
-    def __init__(self, lb, rb, npoints, get_system_matrix, get_alpha, bt):
+    def __init__(self, lb, rb, npoints, get_system_matrix, get_alpha, bt,
+                 cfl=0.6):
         """@todo: Docstring for __init__.
 
         :ncells: @todo
@@ -15,6 +16,7 @@ class Solver(object):
         self.get_system_matrix = get_system_matrix
         self.get_alpha = get_alpha
         self.boundary_type = 'periodic'
+        self.cfl = cfl
 
         # Number of ghost points on each side of the computational domain.
         self.nb = 3
@@ -54,7 +56,7 @@ class Solver(object):
         self.t = 0
         self.alpha_global = self.get_alpha(self.x[l1:l2])
         alpha = np.max(self.alpha_global)
-        self.dt = 0.6 * self.dx / alpha
+        self.dt = self.cfl * self.dx / alpha
 
         while (self.t < final_time):
             if (self.t + self.dt > final_time):
