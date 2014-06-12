@@ -53,8 +53,8 @@ class Solver(object):
         u1 = np.zeros(size*2)
         u2 = np.zeros(size*2)
 
-        l1 = self.nb
-        l2 = self.nb + self.ninternal_points + 2
+        l1 = self.left
+        l2 = self.right + 1
         u0[l1:l2] = ic[0]
         u0[self.npoints + l1:self.npoints + l2] = ic[1]
 
@@ -76,12 +76,12 @@ class Solver(object):
         return u0[l1:l2], u0[self.npoints + l1:self.npoints + l2]
 
     def get_x(self):
-        return self.x[self.nb:self.nb + self.ninternal_points + 2]
+        return self.x[self.left:self.right + 1]
 
     def _rhs(self, values):
         rhs_values = np.zeros_like(values)
-        l1 = self.nb
-        l2 = self.nb + self.ninternal_points + 2
+        l1 = self.left
+        l2 = self.right + 1
 
         u = np.zeros_like(self.x)
         v = np.zeros_like(self.x)
