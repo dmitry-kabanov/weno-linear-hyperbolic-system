@@ -2,8 +2,8 @@ import numpy as np
 
 
 class Solver(object):
-    def __init__(self, lb, rb, npoints, get_system_matrix, get_alpha, bt,
-                 cfl=0.6):
+    def __init__(self, lb, rb, ninternal_points, get_system_matrix, get_alpha,
+                 bt, cfl=0.6):
         """@todo: Docstring for __init__.
 
         :ncells: @todo
@@ -12,7 +12,7 @@ class Solver(object):
         """
         self.lb = lb
         self.rb = rb
-        self.ninternal_points = npoints
+        self.ninternal_points = ninternal_points
         self.get_system_matrix = get_system_matrix
         self.get_alpha = get_alpha
         self.boundary_type = 'periodic'
