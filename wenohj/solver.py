@@ -25,7 +25,7 @@ class Solver(object):
         self.eps = 1.0e-6
 
         # Spatial step.
-        self.dx = (rb - lb) / (self.ninternal_points + 0.0)
+        self.dx = (rb - lb) / (self.ninternal_points + 1.0)
 
         # Total number of the grid points used for the algorithm.
         # This is a scheme of the grid structure:
