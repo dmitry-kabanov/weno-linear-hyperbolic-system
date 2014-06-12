@@ -39,10 +39,8 @@ class Solver(object):
         self.right = self.nb + self.ninternal_points + 1
 
         # Grid.
-        self.x = np.linspace(
-            lb - self.nb * self.dx,
-            rb + self.nb * self.dx,
-            self.npoints)
+        self.x = np.linspace(lb - self.nb * self.dx, rb + self.nb * self.dx,
+                             self.npoints)
 
         self.c1 = 1.0 / 3.0
         self.c2 = 1.0 / 6.0
