@@ -33,6 +33,11 @@ class Solver(object):
         # Legend: * - ghost points, ^ - boundary points, o - internal points
         self.npoints = self.ninternal_points + 2 + 2*self.nb
 
+        # Index of the leftmost point of the physical domain.
+        self.left = self.nb
+        # Index of the rightmost point of the physical domain.
+        self.right = self.nb + self.ninternal_points + 1
+
         # Grid.
         self.x = np.linspace(
             lb - self.nb * self.dx,
@@ -147,5 +152,5 @@ class Solver(object):
     def _apply_boundary_conditions(self, u):
         if self.boundary_type == 'periodic':
             for i in range(0, self.nb + 1):
-                u[self.nb - i] = u[self.nb + self.ninternal_points - i]
-                u[self.nb + self.ninternal_points + i] = u[self.nb + i]
+                u[self.left - i] = u[self.right - i]
+                u[self.right + i] = u[self.left + i]
