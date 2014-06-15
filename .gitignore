@@ -1,5 +1,6 @@
 images/*
 videos/*
+data/*
 .python-version
 
 # Byte-compiled / optimized / DLL files
